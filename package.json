@@ -1,0 +1,41 @@
+{
+  "name": "x-twitter-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for X (Twitter) API v2",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "x-twitter-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "mcp",
+    "twitter",
+    "x",
+    "model-context-protocol",
+    "claude",
+    "ai"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sunu-py-jp/X-Twitter-MCP.git"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "twitter-api-v2": "^1.19.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "typescript": "^5.7.3"
+  }
+}
