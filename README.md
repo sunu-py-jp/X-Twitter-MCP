@@ -48,7 +48,7 @@ claude mcp add x-twitter-mcp \
   -e X_API_SECRET=あなたのAPIシークレット \
   -e X_ACCESS_TOKEN=あなたのアクセストークン \
   -e X_ACCESS_TOKEN_SECRET=あなたのアクセストークンシークレット \
-  -- npx -y x-twitter-mcp
+  -- npx -y @sunu-py-jp/x-twitter-mcp
 ```
 
 #### Claude Desktop
@@ -60,7 +60,7 @@ claude mcp add x-twitter-mcp \
   "mcpServers": {
     "x-twitter-mcp": {
       "command": "npx",
-      "args": ["-y", "x-twitter-mcp"],
+      "args": ["-y", "@sunu-py-jp/x-twitter-mcp"],
       "env": {
         "X_API_KEY": "あなたのAPIキー",
         "X_API_SECRET": "あなたのAPIシークレット",
@@ -226,7 +226,7 @@ npm install
 npm run build
 ```
 
-MCP サーバーの登録時に `npx -y x-twitter-mcp` の代わりに `node /path/to/X-Twitter-MCP/dist/index.js` を指定してください。
+MCP サーバーの登録時に `npx -y @sunu-py-jp/x-twitter-mcp` の代わりに `node /path/to/X-Twitter-MCP/dist/index.js` を指定してください。
 
 ## 機能一覧
 
