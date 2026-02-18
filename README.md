@@ -2,7 +2,7 @@
 
 Claude などの AI アシスタントから X (Twitter) を直接操作できる [Model Context Protocol (MCP)](https://modelcontextprotocol.io) サーバーです。
 
-ツイートの投稿・検索、タイムラインの取得、DM の送受信、リストの管理まで ── X API v2 の主要機能を **50 以上のツール** としてカバーしています。
+ツイートの投稿・検索、タイムラインの取得、DM の送受信、リストの管理まで ── X API v2 の主要機能を **53 のツール** としてカバーしています。
 
 ## 何ができるか
 
@@ -43,7 +43,7 @@ API を直接叩く必要はありません。Claude との対話の中で、シ
 `npx` 経由で実行するため、クローンやビルドは不要です。
 
 ```bash
-claude mcp add x-twitter \
+claude mcp add x-twitter-mcp \
   -e X_API_KEY=あなたのAPIキー \
   -e X_API_SECRET=あなたのAPIシークレット \
   -e X_ACCESS_TOKEN=あなたのアクセストークン \
@@ -217,16 +217,16 @@ X_DISABLED_TOOLS=delete_tweet,unlike_tweet,unretweet,delete_bookmark,unfollow_us
 （X_ENABLED_GROUPS, X_DISABLED_TOOLS ともに未指定）
 ```
 
-#### ソースから直接使う場合
+### ソースから直接使う場合
 
 ```bash
-git clone https://github.com/sunu-py-jp/x-twitter-mcp.git
-cd x-twitter-mcp
+git clone https://github.com/sunu-py-jp/X-Twitter-MCP.git
+cd X-Twitter-MCP
 npm install
 npm run build
 ```
 
-MCP サーバーの登録時に `npx -y x-twitter-mcp` の代わりに `node /path/to/x-twitter-mcp/dist/index.js` を指定してください。
+MCP サーバーの登録時に `npx -y x-twitter-mcp` の代わりに `node /path/to/X-Twitter-MCP/dist/index.js` を指定してください。
 
 ## 機能一覧
 
@@ -374,11 +374,17 @@ Claude からツイートのテスト中です。MCP サーバー経由で投稿
 /path/to/image.png をアップロードして、「新機能をリリースしました」というツイートに添付して投稿して
 ```
 
+## セキュリティ
+
+- **クレデンシャル保護:** API レスポンスに含まれるライブラリ内部のクレデンシャル情報（`consumerSecret`, `accessToken` 等）を自動的に除去してから返却します
+- **パストラバーサル防止:** `upload_media` でのファイルパスにディレクトリトラバーサル（`..`）が含まれる場合を拒否します
+- **SSRF 防止:** `upload_media_from_url` でローカルホストやプライベートネットワークアドレスへのアクセスをブロックします
+
 ## 技術仕様
 
 - **プロトコル:** Model Context Protocol (stdio)
 - **API:** X API v2（OAuth 1.0a User Context）
-- **ランタイム:** Node.js
+- **ランタイム:** Node.js v18+
 - **言語:** TypeScript
 
 ## ライセンス
