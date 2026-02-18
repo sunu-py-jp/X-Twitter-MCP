@@ -1,5 +1,5 @@
 {
-  "name": "x-twitter-mcp",
+  "name": "@sunu-py-jp/x-twitter-mcp",
   "version": "1.0.0",
   "description": "MCP server for X (Twitter) API v2",
   "type": "module",
