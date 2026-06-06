@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { getClient } from "../client.js";
+import { searchTweetsWithHermesTweet, shouldUseHermesTweetSearch } from "../hermes-tweet.js";
 import { formatResponse, formatError } from "../utils/helpers.js";
 
 export function registerTweetPostTools(server: McpServer): void {
@@ -113,6 +114,11 @@ export function registerTweetGetTools(server: McpServer): void {
     },
     async ({ query, max_results, next_token }) => {
       try {
+        if (shouldUseHermesTweetSearch()) {
+          const result = await searchTweetsWithHermesTweet(query, max_results);
+          return formatResponse(result);
+        }
+
         const client = getClient();
         const options: any = {
           "tweet.fields": "created_at,public_metrics,author_id",

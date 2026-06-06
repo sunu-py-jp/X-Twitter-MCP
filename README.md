@@ -123,6 +123,24 @@ X_ENABLED_GROUPS=tweets,timelines:get,users:get
 X_DISABLED_TOOLS=post_tweet,send_dm,delete_tweet
 ```
 
+#### `search_tweets` の任意 Hermes Tweet / Xquik バックエンド
+
+`search_tweets` だけを、X API の代わりに Hermes Tweet / Xquik の読み取り API へルーティングできます。投稿・削除・DM などの書き込み系ツールは引き続き `X_API_KEY` などの X API 認証情報が必要です。
+
+```bash
+HERMES_TWEET_API_KEY=your_xquik_api_key
+XQUIK_BASE_URL=https://xquik.com
+X_READ_BACKEND=hermes
+```
+
+`HERMES_TWEET_API_KEY` と `XQUIK_API_KEY` はどちらも利用できます。`xq_` で始まるキーは `x-api-key` ヘッダー、それ以外は Bearer トークンとして送信されます。
+
+| 値 | 動作 |
+|---|---|
+| `auto` | X API 認証情報がある場合は従来の X API を使い、X API 認証情報がなく Hermes Tweet キーがある場合だけ Hermes Tweet を使う |
+| `twitter` | 常に従来の X API を使う |
+| `hermes` | 常に Hermes Tweet / Xquik を使う |
+
 #### 設定例
 
 以下はよくある使い方に合わせたおすすめの設定です。`env` ブロック内の API キー（`X_API_KEY` 等）は省略しています。
